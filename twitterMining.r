@@ -35,11 +35,18 @@ tdm = TermDocumentMatrix(
     stopwords = c("prayformh370", "prayformh", stopwords("english")),
     removeNumbers = TRUE, tolower = TRUE)
     )
+inspect(mh370_corpus[1:3])
  
 m = as.matrix(tdm)
+head(m)
+
 # get word counts in decreasing order
 word_freqs = sort(rowSums(m), decreasing = TRUE) 
+head(word_freqs)
+
 # create a data frame with words and their frequencies
 dm = data.frame(word = names(word_freqs), freq = word_freqs)
+head(dm)
+
  
 wordcloud(dm$word, dm$freq, random.order = FALSE, colors = brewer.pal(8, "Dark2"))
